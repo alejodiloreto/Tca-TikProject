@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, View, } from "react-native"
 import { Movie } from "../interfaces/UpcomingResult"
 import { TouchableOpacity } from "react-native-gesture-handler"
 import { NavigationProp, useNavigation } from "@react-navigation/native"
-import { RootStackParams } from "../navigation/Navigation"
+import { RootStackParams } from "../navigation/StackNavigator"
 
 interface Props {
   serie: Movie

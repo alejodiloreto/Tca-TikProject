@@ -1,6 +1,6 @@
 import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { Image, Platform, StyleSheet, TouchableOpacity, View } from "react-native"
-import { RootStackParams } from "../navigation/Navigation";
+import { RootStackParams } from "../navigation/StackNavigator";
 import { Movie } from "../interfaces/UpcomingResult";
 
 interface Props {

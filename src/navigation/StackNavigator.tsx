@@ -1,9 +1,9 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import { HomeScreen } from '../screens/HomeScreen';
 import { DetailsScreen } from '../screens/DetailsScreen';
+import { BottomTabNavigator } from './BottomTabsNavigator';
 
 export type RootStackParams = {
-  HomeScreen: undefined;
+  Tabs: undefined;
   DetailsScreen: {
     id: string, 
     image: string | undefined,
@@ -17,7 +17,7 @@ export type RootStackParams = {
 
 const Stack = createStackNavigator<RootStackParams>();
 
-export const Navigation = () => {
+export const StackNavigator = () => {
   return (
     <Stack.Navigator screenOptions={{
       headerShown: false,
@@ -25,7 +25,7 @@ export const Navigation = () => {
         backgroundColor: '#1C1C27'
       }
     }} >
-      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="Tabs" component={BottomTabNavigator} />
       <Stack.Screen name="DetailsScreen" component={DetailsScreen} />
     </Stack.Navigator>
   );

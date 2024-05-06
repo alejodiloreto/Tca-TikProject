@@ -10,7 +10,7 @@ export const TopSeriesList = ({ series }: Props) => {
 
   return (
     <View style={styles.container} >
-      <Text style={styles.text}>Top 250 Rated Series by IMDB</Text>
+      <Text style={styles.text}>Top 50 Rated Series by IMDB</Text>
       <FlatList
         data={series}
         renderItem={({ item }) => <Serie serie={item} />}

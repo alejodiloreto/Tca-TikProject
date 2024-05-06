@@ -2,7 +2,7 @@ import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, useWindowD
 import { FullScreenLoader } from "../components/FullScreenLoader"
 import { useMovies } from "../hooks/useMovies";
 import { StackScreenProps } from "@react-navigation/stack";
-import { RootStackParams } from "../navigation/Navigation";
+import { RootStackParams } from "../navigation/StackNavigator";
 import { useNavigation } from "@react-navigation/native";
 
 interface Props extends StackScreenProps<RootStackParams, 'DetailsScreen'> { };
