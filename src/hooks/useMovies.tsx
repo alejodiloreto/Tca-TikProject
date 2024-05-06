@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Movie } from "../interfaces/UpcomingResult";
-import { getUpcomingMovies } from '../api/ApiService';
+import { getTopRatedSeries, getUpcomingMovies } from '../api/ApiService';
 
 export const useMovies = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [upcomingMovies, setUpcomingMovies] = useState<Movie[]>([]);
+  const [topSeries, setTopSeries] = useState<Movie[]>([]);
 
   useEffect(() => {
     initialLoad();
@@ -12,8 +13,11 @@ export const useMovies = () => {
 
   const initialLoad = async () => {
     try {
-      const data = await getUpcomingMovies();
-      setUpcomingMovies(data);
+      const upcomingMoviesData = await getUpcomingMovies();
+      setUpcomingMovies(upcomingMoviesData);
+
+      const topSeriesData = await getTopRatedSeries();
+      setTopSeries(topSeriesData);
     } catch (error) {
       console.error(error);
     } finally {
@@ -23,6 +27,7 @@ export const useMovies = () => {
 
   return {
     isLoading,
-    upcomingMovies
+    upcomingMovies,
+    topSeries
   }
 }

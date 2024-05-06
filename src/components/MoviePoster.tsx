@@ -13,7 +13,15 @@ export const MoviePoster = ({movie}: Props) => {
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('DetailsScreen')}
+      onPress={() => navigation.navigate('DetailsScreen', 
+      {
+        id: movie.id, 
+        image: movie.primaryImage?.url,
+        title: movie.originalTitleText.text,
+        titleType: movie.titleType.text,
+        year: movie.releaseYear.year,
+      }
+    )}
       style={styles.pressable}
       activeOpacity={Platform.OS === 'android' ? .8 : .5}
     >

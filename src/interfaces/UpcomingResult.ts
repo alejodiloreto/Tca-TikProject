@@ -14,6 +14,7 @@ export interface Movie {
   originalTitleText: TitleText;
   releaseYear:       ReleaseYear;
   releaseDate:       ReleaseDate;
+  position?:         number;
 }
 
 export interface TitleText {
