@@ -2,33 +2,36 @@ import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { Image, Platform, StyleSheet, TouchableOpacity, View } from "react-native"
 import { RootStackParams } from "../navigation/StackNavigator";
 import { Movie } from "../interfaces/UpcomingResult";
+import { imageNotFound } from "../api/ApiService";
 
 interface Props {
   movie: Movie;
 }
 
-export const MoviePoster = ({movie}: Props) => {
+export const MoviePoster = ({ movie }: Props) => {
 
   const navigation = useNavigation<NavigationProp<RootStackParams>>();
 
+  const onPressMovie = () => {
+    navigation.navigate('DetailsScreen', {
+      id: movie.id,
+      image: movie.primaryImage?.url,
+      title: movie.originalTitleText.text,
+      titleType: movie.titleType.text,
+      year: movie.releaseYear.year,
+    });
+  };
+  
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate('DetailsScreen', 
-      {
-        id: movie.id, 
-        image: movie.primaryImage?.url,
-        title: movie.originalTitleText.text,
-        titleType: movie.titleType.text,
-        year: movie.releaseYear.year,
-      }
-    )}
+      onPress={onPressMovie}
       style={styles.pressable}
       activeOpacity={Platform.OS === 'android' ? .8 : .5}
     >
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
-          source={{ uri: movie.primaryImage?.url }}
+          source={{ uri: movie.primaryImage?.url || imageNotFound }}
           resizeMode="cover"
         />
       </View>
@@ -59,6 +62,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.24,
     shadowRadius: 7,
 
-    elevation: 10
+    elevation: 10,
+    backgroundColor: 'lightgray',
   },
 })

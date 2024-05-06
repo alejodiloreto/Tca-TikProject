@@ -10,34 +10,34 @@ const options = {
   }
 };
 
-export const getUpcomingMovies = async (): Promise<Movie[]> => {
+export const imageNotFound = 'https://static.vecteezy.com/system/resources/previews/005/337/799/original/icon-image-not-found-free-vector.jpg'
+
+const fetchData = async (url: string): Promise<UpcomingResult> => {
   try {
-    const response = await fetch(`${url}/x/upcoming?page=1`, options);
+    const response = await fetch(url, options);
 
     if (!response.ok) {
       throw new Error(`Error en la llamada getUpcomingMovies: Status code ${response.status}`);
     }
 
-    const movies: UpcomingResult = await response.json();
-    return movies.results;
+    return await response.json();
   } catch (error) {
     console.error('Error en la llamada a la API getUpcomingMovies:', error);
     throw error;
   }
 }
 
+export const getUpcomingMovies = async (): Promise<Movie[]> => {
+  const data = await fetchData(`${url}/x/upcoming?page=1`);
+  return data.results;
+}
+
 export const getTopRatedSeries = async (): Promise<Movie[]> => {
-  try {
-    const response = await fetch(`${url}?list=top_rated_series_250&limit=50`, options);
+  const data = await fetchData(`${url}?list=top_rated_series_250&limit=50`);
+  return data.results;
+}
 
-    if (!response.ok) {
-      throw new Error(`Error en la llamada getTopRatedSeries: Status code ${response.status}`);
-    }
-
-    const series: UpcomingResult = await response.json();
-    return series.results;
-  } catch (error) {
-    console.error('Error en la llamada a la API getTopRatedSeries:', error);
-    throw error;
-  }
+export const getSerieByName = async (value: string): Promise<Movie[]> => {
+  const data = await fetchData(`${url}/search/title/${value}?exact=false&list=top_rated_series_250`);
+  return data.results;
 }

@@ -4,6 +4,8 @@ import { useMovies } from "../hooks/useMovies";
 import { StackScreenProps } from "@react-navigation/stack";
 import { RootStackParams } from "../navigation/StackNavigator";
 import { useNavigation } from "@react-navigation/native";
+import { imageNotFound } from "../api/ApiService";
+import Icon from "react-native-vector-icons/Ionicons";
 
 interface Props extends StackScreenProps<RootStackParams, 'DetailsScreen'> { };
 
@@ -22,7 +24,7 @@ export const DetailsScreen = ({ route }: Props) => {
     <ScrollView>
       <View style={styles.backButton}>
         <TouchableOpacity onPress={() => navigation.goBack()}>
-          <Text style={styles.backButtonText}>Volver</Text>
+          <Icon name='arrow-back-circle' color='white' size={40} style={styles.backButton} />
         </TouchableOpacity>
       </View>
 
@@ -30,7 +32,7 @@ export const DetailsScreen = ({ route }: Props) => {
         <View style={styles.imageBorder} >
           <Image
             style={styles.posterImage}
-            source={{ uri: image }}
+            source={{ uri: image ? image : imageNotFound }}
           />
         </View>
       </View>
@@ -72,6 +74,7 @@ const styles = StyleSheet.create({
     elevation: 9,
     borderBottomEndRadius: 25,
     borderBottomStartRadius: 25,
+    backgroundColor: 'lightgray'
   },
   imageBorder: {
     flex: 1,
@@ -97,14 +100,6 @@ const styles = StyleSheet.create({
     elevation: 9,
     top: 35,
     left: 10,
-  },
-  backButtonText: {
-    color: 'white',
-    fontSize: 25,
-    fontWeight: 'bold',
-    textShadowColor: 'rgba(0, 0, 0, 0.55)',
-    textShadowOffset: { width: -1, height: 1 },
-    textShadowRadius: 10,
   },
   text: {
     fontSize: 23,

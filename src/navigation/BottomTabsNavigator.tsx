@@ -24,8 +24,8 @@ export const BottomTabNavigator = () => {
         },
       }}
     >
-      <Tab.Screen name="HomeScreen" component={HomeScreen} options={{title: 'Home', tabBarIcon: ({focused}) => (<Icon name="home" size={20} color={focused ? 'black' : 'grey'} />)}} />
-      <Tab.Screen name="SearchScreen" component={SearchScreen} options={{title: 'Search', tabBarIcon: ({focused}) => (<Icon name="search" size={20} color={focused ? 'black' : 'grey'} />)}} />
+      <Tab.Screen name="HomeScreen" component={HomeScreen} options={{ title: 'Home', tabBarIcon: ({ focused }) => (<Icon name="home" size={20} color={focused ? 'black' : 'grey'} />) }} />
+      <Tab.Screen name="SearchScreen" component={SearchScreen} options={{ title: 'Search', tabBarIcon: ({ focused }) => (<Icon name="search" size={20} color={focused ? 'black' : 'grey'} />) }} />
     </Tab.Navigator>
   );
 }
